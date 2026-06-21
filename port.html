@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kabeer Khan - Front-End Web Developer Portfolio">
+    <title>Kabeer Khan | Front-End Web Developer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'Inter',sans-serif;background:#050816;color:#fff;line-height:1.6;overflow-x:hidden}
+
+        /* Navbar */
+        .navbar{position:fixed;top:0;left:0;width:100%;padding:15px 0;z-index:1000;transition:all .3s}
+        .navbar.scrolled{background:rgba(5,8,22,.95);backdrop-filter:blur(20px);box-shadow:0 4px 30px rgba(0,0,0,.3);padding:10px 0}
+        .nav-container{max-width:1140px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
+        .logo{font-size:28px;font-weight:800;color:#fff;text-decoration:none}
+        .logo span{color:#2563EB}
+        .nav-links{display:flex;gap:30px;list-style:none}
+        .nav-links a{color:#94A3B8;text-decoration:none;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.5px;transition:color .3s;position:relative}
+        .nav-links a:hover,.nav-links a.active{color:#fff}
+        .nav-links a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:#2563EB;transition:width .3s}
+        .nav-links a:hover::after,.nav-links a.active::after{width:100%}
+        .menu-btn{display:none;background:none;border:none;color:#fff;font-size:20px;cursor:pointer}
+
+        /* Hero */
+        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;background:radial-gradient(ellipse at bottom,#0F172A 0%,#050816 100%);padding-top:80px}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,.1);border:1px solid rgba(59,130,246,.2);padding:8px 18px;border-radius:50px;font-size:14px;color:#2563EB;margin-bottom:25px}
+        .pulse{width:8px;height:8px;background:#10B981;border-radius:50%;animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.2)}}
+        .hero h1{font-size:clamp(36px,6vw,72px);font-weight:800;line-height:1.1;margin-bottom:20px;letter-spacing:-2px}
+        .hero h1 span{background:linear-gradient(135deg,#2563EB,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .hero-sub{font-size:clamp(18px,3vw,28px);color:#94A3B8;margin-bottom:20px;font-family:'JetBrains Mono',monospace}
+        .hero-sub .type{color:#2563EB;font-weight:600}
+        .cursor{color:#2563EB;animation:blink 1s infinite}
+        @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+        .hero>p{color:#94A3B8;max-width:600px;margin:0 auto 30px;font-size:17px;line-height:1.8;padding:0 20px}
+        .hero-btns{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;margin-bottom:35px;padding:0 20px}
+        .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:8px;font-weight:600;font-size:15px;text-decoration:none;transition:all .3s;border:none;cursor:pointer}
+        .btn-main{background:linear-gradient(135deg,#2563EB,#3B82F6);color:#fff;box-shadow:0 4px 15px rgba(37,99,235,.3)}
+        .btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(37,99,235,.4)}
+        .btn-sec{background:transparent;color:#fff;border:2px solid rgba(59,130,246,.2)}
+        .btn-sec:hover{border-color:#2563EB;color:#2563EB;transform:translateY(-2px)}
+        .hero-social{display:flex;gap:15px;justify-content:center}
+        .hero-social a{width:45px;height:45px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(15,23,42,.8);border:1px solid rgba(59,130,246,.2);color:#94A3B8;font-size:16px;transition:all .3s;text-decoration:none}
+        .hero-social a:hover{background:#2563EB;color:#fff;border-color:#2563EB;transform:translateY(-3px)}
+        .scroll-down{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);text-align:center}
+        .mouse{width:26px;height:40px;border:2px solid #94A3B8;border-radius:13px;margin:0 auto 8px;position:relative}
+        .wheel{width:4px;height:8px;background:#2563EB;border-radius:2px;position:absolute;top:6px;left:50%;transform:translateX(-50%);animation:scroll 2s infinite}
+        @keyframes scroll{0%{opacity:1;transform:translateX(-50%)translateY(0)}100%{opacity:0;transform:translateX(-50%)translateY(15px)}}
+        .scroll-down span{font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:2px}
+
+        /* Floating icons */
+        .floats{position:absolute;width:100%;height:100%;top:0;left:0;pointer-events:none;overflow:hidden}
+        .float{position:absolute;font-size:40px;color:rgba(37,99,235,.12);animation:float 6s ease-in-out infinite}
+        .float:nth-child(1){top:20%;left:10%;animation-delay:0s}
+        .float:nth-child(2){top:60%;left:15%;animation-delay:-1s}
+        .float:nth-child(3){top:30%;right:10%;animation-delay:-2s}
+        .float:nth-child(4){top:70%;right:15%;animation-delay:-3s}
+        .float:nth-child(5){top:45%;left:5%;animation-delay:-4s}
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+
+        /* Sections */
+        section{padding:100px 20px}
+        .container{max-width:1140px;margin:0 auto}
+        .sec-head{text-align:center;margin-bottom:60px}
+        .sec-tag{color:#2563EB;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:3px;margin-bottom:10px;display:block}
+        .sec-title{font-size:clamp(32px,4vw,48px);font-weight:800;margin-bottom:15px}
+        .sec-title span{background:linear-gradient(135deg,#2563EB,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .sec-line{width:60px;height:4px;background:linear-gradient(90deg,#2563EB,#3B82F6);margin:0 auto;border-radius:2px}
+
+        /* About */
+        .about-sec{background:linear-gradient(to bottom,#050816,#0F172A)}
+        .about-wrap{display:flex;align-items:center;gap:60px}
+        .about-img{position:relative;width:350px;height:450px;margin:0 auto}
+        .about-img .box{width:100%;height:100%;border-radius:20px;overflow:hidden;position:relative;z-index:2;border:2px solid rgba(59,130,246,.2)}.about-img .box img{width:100%;height:100%;object-fit:cover;display:block}
+        .about-img .border{position:absolute;top:20px;left:20px;width:100%;height:100%;border:2px solid #2563EB;border-radius:20px;z-index:1;transition:all .3s}
+        .about-img:hover .border{top:10px;left:10px}
+        .exp-badge{position:absolute;bottom:-20px;right:-20px;background:linear-gradient(135deg,#2563EB,#3B82F6);padding:18px;border-radius:15px;box-shadow:0 20px 60px rgba(37,99,235,.2);z-index:3;text-align:center;min-width:110px}
+        .exp-badge b{font-size:28px;display:block}
+        .exp-badge small{font-size:12px;opacity:.9}
+        .about-text h3{font-size:28px;margin-bottom:20px}
+        .about-text p{color:#94A3B8;margin-bottom:18px;line-height:1.8}
+        .about-text p strong{color:#fff}
+        .stats{display:flex;gap:40px;margin-top:30px;padding-top:30px;border-top:1px solid rgba(59,130,246,.2)}
+        .stat b{display:block;font-size:32px;color:#2563EB}
+        .stat span{color:#94A3B8;font-size:14px}
+
+        /* Education */
+        .edu-sec{background:#050816}
+        .timeline{position:relative;max-width:800px;margin:0 auto;padding-left:30px}
+        .timeline::before{content:'';position:absolute;left:0;top:0;height:100%;width:2px;background:linear-gradient(to bottom,#2563EB,transparent)}
+        .t-item{position:relative;padding-left:40px;padding-bottom:40px}
+        .t-item:last-child{padding-bottom:0}
+        .t-dot{position:absolute;left:-34px;top:5px;width:16px;height:16px;border-radius:50%;background:#2563EB;border:4px solid #050816;box-shadow:0 0 0 2px #2563EB}
+        .t-line{position:absolute;top:21px;left:-27px;width:2px;height:calc(100% + 40px);background:rgba(59,130,246,.2)}
+        .t-item:last-child .t-line{display:none}
+        .t-card{background:rgba(15,23,42,.8);border:1px solid rgba(59,130,246,.2);border-radius:16px;padding:25px;transition:all .3s}
+        .t-card:hover{transform:translateX(10px);border-color:#2563EB;box-shadow:0 10px 40px rgba(37,99,235,.15)}
+        .t-card .date{display:inline-block;background:rgba(37,99,235,.1);color:#2563EB;padding:5px 15px;border-radius:50px;font-size:13px;font-weight:600;margin-bottom:12px}
+        .t-card h4{font-size:20px;margin-bottom:8px}
+        .t-card .school{color:#2563EB;font-size:14px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+        .t-card p{color:#94A3B8;font-size:15px;margin-bottom:15px;line-height:1.7}
+        .t-tags{display:flex;flex-wrap:wrap;gap:8px}
+        .t-tags span{background:rgba(37,99,235,.1);color:#2563EB;padding:4px 12px;border-radius:6px;font-size:12px;font-weight:500}
+
+        /* Skills */
+        .skills-sec{background:linear-gradient(to bottom,#0F172A,#050816)}
+        .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-bottom:40px}
+        .skill-box{background:rgba(15,23,42,.8);border:1px solid rgba(59,130,246,.2);border-radius:20px;padding:30px}
+        .skill-box h3{font-size:18px;margin-bottom:25px;display:flex;align-items:center;gap:10px}
+        .skill-box h3 i{color:#2563EB}
+        .sk-row{margin-bottom:22px}
+        .sk-row:last-child{margin-bottom:0}
+        .sk-info{display:flex;justify-content:space-between;margin-bottom:8px}
+        .sk-info span{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px}
+        .sk-info span i{color:#2563EB}
+        .sk-info b{color:#2563EB;font-family:'JetBrains Mono',monospace}
+        .sk-bar{height:8px;background:rgba(148,163,184,.1);border-radius:4px;overflow:hidden}
+        .sk-fill{height:100%;background:linear-gradient(90deg,#2563EB,#3B82F6);border-radius:4px;width:0;transition:width 1.5s ease}
+        .sk-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px}
+        .sk-card{background:rgba(15,23,42,.8);border:1px solid rgba(59,130,246,.2);border-radius:16px;padding:30px 20px;text-align:center;transition:all .3s;cursor:pointer}
+        .sk-card:hover{transform:translateY(-10px);border-color:#2563EB;box-shadow:0 10px 40px rgba(37,99,235,.2)}
+        .sk-card .ico{width:55px;height:55px;border-radius:14px;background:rgba(37,99,235,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 15px;font-size:24px;color:#2563EB;transition:all .3s}
+        .sk-card:hover .ico{background:#2563EB;color:#fff;transform:rotateY(360deg)}
+        .sk-card h4{font-size:16px;margin-bottom:6px}
+        .sk-card p{color:#94A3B8;font-size:13px;margin:0}
+
+        /* Projects */
+        .proj-sec{background:#050816}
+        .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+        .proj-card{background:rgba(15,23,42,.8);border:1px solid rgba(59,130,246,.2);border-radius:20px;overflow:hidden;transition:all .3s}
+        .proj-card:hover{transform:translateY(-10px);border-color:#2563EB;box-shadow:0 20px 60px rgba(37,99,235,.2)}
+        .proj-img{position:relative;height:200px;overflow:hidden}
+        .proj-img .ph{width:100%;height:100%;background:linear-gradient(135deg,#0F172A,rgba(37,99,235,.15));display:flex;align-items:center;justify-content:center;font-size:50px;color:#2563EB;transition:all .3s}
+        .proj-card:hover .proj-img .ph{transform:scale(1.1)}
+        .proj-over{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(5,8,22,.8);display:flex;align-items:center;justify-content:center;gap:15px;opacity:0;transition:all .3s}
+        .proj-card:hover .proj-over{opacity:1}
+        .proj-over a{width:45px;height:45px;border-radius:50%;background:#2563EB;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;transform:translateY(20px);transition:all .3s;text-decoration:none}
+        .proj-card:hover .proj-over a{transform:translateY(0)}
+        .proj-over a:hover{background:#3B82F6}
+        .proj-body{padding:22px}
+        .proj-body h4{font-size:18px;margin-bottom:10px}
+        .proj-body p{color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:15px}
+        .proj-tech{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+        .proj-tech span{background:rgba(37,99,235,.1);color:#2563EB;padding:3px 10px;border-radius:4px;font-size:12px;font-weight:500}
+        .proj-links{display:flex;gap:10px}
+        .proj-links .btn{flex:1;justify-content:center;padding:10px 18px;font-size:13px}
+
+        /* Contact */
+        .contact-sec{background:linear-gradient(to bottom,#050816,#0F172A)}
+        .contact-wrap{display:flex;gap:50px}
+        .contact-info h3{font-size:28px;margin-bottom:12px}
+        .contact-info>p{color:#94A3B8;margin-bottom:35px;line-height:1.8}
+        .c-item{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+        .c-item .ico{width:50px;height:50px;border-radius:12px;background:rgba(37,99,235,.1);display:flex;align-items:center;justify-content:center;color:#2563EB;font-size:18px;transition:all .3s;flex-shrink:0}
+        .c-item:hover .ico{background:#2563EB;color:#fff;transform:rotateY(360deg)}
+        .c-item div{display:flex;flex-direction:column}
+        .c-item div small{color:#94A3B8;font-size:13px;margin-bottom:3px}
+        .c-item div a,.c-item div span{color:#fff;text-decoration:none;font-weight:600;font-size:15px;transition:color .3s}
+        .c-item div a:hover{color:#2563EB}
+        .c-social{display:flex;gap:12px;margin-top:30px}
+        .c-social a{width:45px;height:45px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(15,23,42,.8);border:1px solid rgba(59,130,246,.2);color:#94A3B8;font-size:16px;transition:all .3s;text-decoration:none}
+        .c-social a:hover{background:#2563EB;color:#fff;border-color:#2563EB;transform:translateY(-3px)}
+        .contact-form{background:rgba(15,23,42,.8);border:1px solid rgba(59,130,246,.2);border-radius:20px;padding:35px}
+        .f-group{position:relative;margin-bottom:18px}
+        .f-group input,.f-group textarea{width:100%;background:rgba(148,163,184,.05);border:1px solid rgba(59,130,246,.2);border-radius:12px;padding:14px 18px 14px 48px;color:#fff;font-size:15px;transition:all .3s;font-family:inherit}
+        .f-group input:focus,.f-group textarea:focus{background:rgba(37,99,235,.05);border-color:#2563EB;outline:none;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+        .f-group input::placeholder,.f-group textarea::placeholder{color:#94A3B8}
+        .f-group i{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:#94A3B8;transition:color .3s}
+        .f-group textarea+i{top:22px;transform:none}
+        .f-group input:focus+i,.f-group textarea:focus+i{color:#2563EB}
+        .f-group textarea{resize:vertical;min-height:130px}
+        .contact-form .btn-main{width:100%;justify-content:center;padding:16px}
+
+        /* Footer */
+        footer{background:#050816;border-top:1px solid rgba(59,130,246,.2);padding:50px 20px 25px}
+        .foot-content{display:flex;flex-direction:column;align-items:center;text-align:center;gap:25px;margin-bottom:40px}
+        .foot-brand{font-size:28px;font-weight:800}
+        .foot-brand span{color:#2563EB}
+        .foot-brand+p{color:#94A3B8;margin-top:5px}
+        .foot-social{display:flex;gap:12px}
+        .foot-links{display:flex;gap:30px;flex-wrap:wrap;justify-content:center}
+        .foot-links a{color:#94A3B8;text-decoration:none;font-size:14px;transition:all .3s;position:relative}
+        .foot-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:#2563EB;transition:width .3s}
+        .foot-links a:hover{color:#fff}
+        .foot-links a:hover::after{width:100%}
+        .foot-bottom{text-align:center;padding-top:25px;border-top:1px solid rgba(59,130,246,.2)}
+        .foot-bottom p{color:#94A3B8;font-size:14px;margin-bottom:8px}
+        .foot-bottom i{color:#EF4444;animation:heartbeat 1.5s infinite}
+        @keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+
+        /* Back to top */
+        #topBtn{position:fixed;bottom:25px;right:25px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#2563EB,#3B82F6);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;opacity:0;visibility:hidden;transform:translateY(20px);transition:all .3s;z-index:999}
+        #topBtn.show{opacity:1;visibility:visible;transform:translateY(0)}
+        #topBtn:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(37,99,235,.4)}
+
+        /* Reveal animation */
+        .reveal{opacity:0;transform:translateY(40px);transition:all .8s ease}
+        .reveal.active{opacity:1;transform:translateY(0)}
+
+        /* Responsive */
+        @media(max-width:991px){
+            .menu-btn{display:block}
+            .nav-links{position:fixed;top:70px;right:-100%;width:280px;height:calc(100vh - 70px);background:rgba(5,8,22,.98);backdrop-filter:blur(20px);flex-direction:column;padding:30px;gap:20px;transition:right .3s;border-left:1px solid rgba(59,130,246,.2)}
+            .nav-links.open{right:0}
+            .about-wrap{flex-direction:column}
+            .about-img{width:280px;height:360px}
+            .about-text{padding:0}
+            .skills-grid{grid-template-columns:1fr}
+            .proj-grid{grid-template-columns:repeat(2,1fr)}
+            .contact-wrap{flex-direction:column}
+            .contact-info{padding:0}
+        }
+        @media(max-width:767px){
+            section{padding:60px 20px}
+            .sec-head{margin-bottom:40px}
+            .hero h1{font-size:36px}
+            .hero-btns{flex-direction:column;align-items:center}
+            .btn{width:100%;max-width:280px;justify-content:center}
+            .about-img{width:220px;height:280px}
+            .exp-badge{position:relative;bottom:auto;right:auto;margin-top:15px;display:inline-flex;flex-direction:row;gap:8px;align-items:center}
+            .stats{flex-direction:column;gap:20px}
+            .stat{display:flex;align-items:center;gap:12px}
+            .timeline{padding-left:0}
+            .timeline::before{display:none}
+            .t-item{padding-left:0}
+            .t-dot,.t-line{display:none}
+            .t-card{padding:20px}
+            .sk-cards{grid-template-columns:repeat(2,1fr)}
+            .proj-grid{grid-template-columns:1fr}
+            .contact-form{padding:25px}
+            .foot-links{gap:15px}
+        }
+        @media(max-width:575px){
+            .hero h1{font-size:30px}
+            .about-img{width:180px;height:230px}
+            .sk-cards{grid-template-columns:1fr 1fr}
+        }
+    </style>
+<base target="_blank">
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">Kabeer<span>.</span></a>
+            <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="floats">
+            <div class="float"><i class="fab fa-html5"></i></div>
+            <div class="float"><i class="fab fa-css3-alt"></i></div>
+            <div class="float"><i class="fab fa-js"></i></div>
+            <div class="float"><i class="fab fa-bootstrap"></i></div>
+            <div class="float"><i class="fab fa-react"></i></div>
+        </div>
+        <div class="container">
+            <div class="hero-badge">
+                <span class="pulse"></span>
+                <span>Available for Work</span>
+            </div>
+            <h1>Hi, I'm <span>Kabeer Khan</span></h1>
+            <div class="hero-sub">
+                I'm a <span class="type" id="typeText"></span><span class="cursor">|</span>
+            </div>
+            <p>Crafting pixel-perfect, responsive, and performant web experiences with modern technologies.</p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn btn-main">View Projects <i class="fas fa-arrow-right"></i></a>
+                <a href="#contact" class="btn btn-sec">Contact Me <i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="hero-social">
+                <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://instagram.com/kbrx_.sn09" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/923302741348" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <div class="mouse"><div class="wheel"></div></div>
+            <span>Scroll Down</span>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about-sec" id="about">
+        <div class="container">
+            <div class="sec-head reveal">
+                <span class="sec-tag">About Me</span>
+                <h2 class="sec-title">Who I <span>Am</span></h2>
+                <div class="sec-line"></div>
+            </div>
+            <div class="about-wrap">
+                <div class="about-img reveal">
+                   <div class="box"><img src="image/img3.JPG" alt="Kabeer Khan"></div>
+                    <div class="border"></div>
+                    <div class="exp-badge"><b>2+</b><small>Years Exp.</small></div>
+                </div>
+                <div class="about-text reveal">
+                    <h3>Passionate Front-End Developer</h3>
+                    <p>I am a passionate <strong>Front-End Web Developer</strong> specializing in <strong>HTML, CSS, JavaScript, Responsive Design, Media Queries, and Bootstrap</strong>. I enjoy building modern, fast, and user-friendly websites.</p>
+                    <p>I am continuously learning new technologies and seeking opportunities to improve my skills and contribute to innovative projects.</p>
+                    <div class="stats">
+                        <div class="stat"><b>15+</b><span>Projects Completed</span></div>
+                        <div class="stat"><b>10+</b><span>Happy Clients</span></div>
+                        <div class="stat"><b>100%</b><span>Satisfaction Rate</span></div>
+                    </div>
+                    <a href="#contact" class="btn btn-main" style="margin-top:25px">Let's Work Together <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section class="edu-sec" id="education">
+        <div class="container">
+            <div class="sec-head reveal">
+                <span class="sec-tag">Education</span>
+                <h2 class="sec-title">My <span>Journey</span></h2>
+                <div class="sec-line"></div>
+            </div>
+            <div class="timeline">
+                <div class="t-item reveal">
+                    <div class="t-dot"></div><div class="t-line"></div>
+                    <div class="t-card">
+                        <span class="date">2026 - Present</span>
+                        <h4>Front-End Web Development</h4>
+                        <div class="school"><i class="fas fa-graduation-cap"></i> TerraMax</div>
+                        <p>Advanced training in modern front-end technologies including HTML5, CSS3, JavaScript, Bootstrap 5, and responsive design.</p>
+                        <div class="t-tags"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Bootstrap</span></div>
+                    </div>
+                </div>
+                <div class="t-item reveal">
+                    <div class="t-dot"></div><div class="t-line"></div>
+                    <div class="t-card">
+                        <span class="date">2024 - 2025</span>
+                        <h4>Certificate in Information Technology (CIT)</h4>
+                        <div class="school"><i class="fas fa-school"></i> Chambers Public High School</div>
+                        <p>Comprehensive IT certification covering computer fundamentals, programming basics, and software applications.</p>
+                        <div class="t-tags"><span>Computer Science</span><span>Programming</span></div>
+                    </div>
+                </div>
+                <div class="t-item reveal">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <span class="date">Completed</span>
+                        <h4>Matriculation</h4>
+                        <div class="school"><i class="fas fa-school"></i> The Smart School, Liaqat Campus</div>
+                        <p>Completed secondary education with focus on science and computer studies.</p>
+                        <div class="t-tags"><span>Science</span><span>Computer Studies</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="skills-sec" id="skills">
+        <div class="container">
+            <div class="sec-head reveal">
+                <span class="sec-tag">Skills</span>
+                <h2 class="sec-title">Technical <span>Expertise</span></h2>
+                <div class="sec-line"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-box reveal">
+                    <h3><i class="fas fa-code"></i> Core Technologies</h3>
+                    <div class="sk-row"><div class="sk-info"><span><i class="fab fa-html5"></i> HTML5</span><b>95%</b></div><div class="sk-bar"><div class="sk-fill" data-w="95"></div></div></div>
+                    <div class="sk-row"><div class="sk-info"><span><i class="fab fa-css3-alt"></i> CSS3</span><b>90%</b></div><div class="sk-bar"><div class="sk-fill" data-w="90"></div></div></div>
+                    <div class="sk-row"><div class="sk-info"><span><i class="fab fa-js"></i> JavaScript</span><b>80%</b></div><div class="sk-bar"><div class="sk-fill" data-w="80"></div></div></div>
+                    <div class="sk-row"><div class="sk-info"><span><i class="fab fa-bootstrap"></i> Bootstrap 5</span><b>92%</b></div><div class="sk-bar"><div class="sk-fill" data-w="92"></div></div></div>
+                </div>
+                <div class="skill-box reveal">
+                    <h3><i class="fas fa-tools"></i> Tools & Others</h3>
+                    <div class="sk-row"><div class="sk-info"><span><i class="fas fa-mobile-alt"></i> Responsive Design</span><b>94%</b></div><div class="sk-bar"><div class="sk-fill" data-w="94"></div></div></div>
+                    <div class="sk-row"><div class="sk-info"><span><i class="fab fa-git-alt"></i> Git & GitHub</span><b>85%</b></div><div class="sk-bar"><div class="sk-fill" data-w="85"></div></div></div>
+                    <div class="sk-row"><div class="sk-info"><span><i class="fas fa-bolt"></i> Media Queries</span><b>93%</b></div><div class="sk-bar"><div class="sk-fill" data-w="93"></div></div></div>
+                </div>
+            </div>
+            <div class="sk-cards">
+                <div class="sk-card reveal"><div class="ico"><i class="fab fa-html5"></i></div><h4>HTML5</h4><p>Semantic markup & SEO</p></div>
+                <div class="sk-card reveal"><div class="ico"><i class="fab fa-css3-alt"></i></div><h4>CSS3</h4><p>Flexbox, Grid, Animations</p></div>
+                <div class="sk-card reveal"><div class="ico"><i class="fab fa-js"></i></div><h4>JavaScript</h4><p>DOM, ES6+, Events</p></div>
+                <div class="sk-card reveal"><div class="ico"><i class="fab fa-bootstrap"></i></div><h4>Bootstrap 5</h4><p>Grid, Components</p></div>
+                <div class="sk-card reveal"><div class="ico"><i class="fas fa-mobile-alt"></i></div><h4>Responsive</h4><p>Mobile-first Design</p></div>
+                <div class="sk-card reveal"><div class="ico"><i class="fab fa-git-alt"></i></div><h4>Git & GitHub</h4><p>Version Control</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="proj-sec" id="projects">
+        <div class="container">
+            <div class="sec-head reveal">
+                <span class="sec-tag">Portfolio</span>
+                <h2 class="sec-title">Featured <span>Project</span></h2>
+                <div class="sec-line"></div>
+            </div>
+            <div class="proj-grid" style="grid-template-columns: 1fr; max-width: 1200px; margin: 0 auto;">
+                <div class="proj-card reveal" style="max-width: 1200px; margin-top: 0px auto; width: 100%;">
+                    <div class="proj-img" style="height: 350px;">
+                        <img src="image/img1.png" alt="TerraMax Academy Website" style="width: 100%; height: 100%;  object-fit: unset;">
+                        <div class="proj-over">
+                            <a href="https://kabeerkhan1591-ctrl.github.io/THE-TERRAMAX-ACADEMY/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://github.com/kabeerkhan1591-ctrl/THE-TERRAMAX-ACADEMY" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="proj-body">
+                        <h4>TerraMax Academy</h4>
+                        <p>A fully responsive educational institute website built with HTML5, CSS3, and Bootstrap 5. Features course listings, faculty profiles, and a modern UI design.</p>
+                        <div class="proj-tech"><span>HTML5</span><span>CSS3</span><span>Bootstrap 5</span><span>Responsive</span></div>
+                        <div class="proj-links">
+                            <a href="https://kabeerkhan1591-ctrl.github.io/THE-TERRAMAX-ACADEMY/" target="_blank" class="btn btn-main"><i class="fas fa-eye"></i> Live Demo</a>
+                            <a href="https://github.com/kabeerkhan1591-ctrl/THE-TERRAMAX-ACADEMY" target="_blank" class="btn btn-sec"><i class="fab fa-github"></i> View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coming Soon Message -->
+            <div style="text-align: center; margin-top: 60px; padding: 40px; background: rgba(15,23,42,.6); border: 1px solid rgba(59,130,246,.2); border-radius: 20px; max-width: 700px; margin-left: auto; margin-right: auto;" class="reveal">
+                <i class="fas fa-rocket" style="font-size: 40px; color: #2563EB; margin-bottom: 20px; display: block;"></i>
+                <h3 style="font-size: 22px; margin-bottom: 10px;">More Projects Coming Soon</h3>
+                <p style="color: #94A3B8; margin-bottom: 25px;">I'm currently working on new exciting projects. Stay tuned for updates!</p>
+                <a href="#contact" class="btn btn-main">Hire Me for Your Project <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    <!-- Contact -->
+    <section class="contact-sec" id="contact">
+        <div class="container">
+            <div class="sec-head reveal">
+                <span class="sec-tag">Contact</span>
+                <h2 class="sec-title">Get In <span>Touch</span></h2>
+                <div class="sec-line"></div>
+            </div>
+            <div class="contact-wrap">
+                <div class="contact-info reveal">
+                    <h3>Let's discuss your project</h3>
+                    <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+                    <div class="c-item">
+                        <div class="ico"><i class="fas fa-envelope"></i></div>
+                        <div><small>Email</small><a href="mailto:kabeerkhan1591@gmail.com">kabeerkhan1591@gmail.com</a></div>
+                    </div>
+                    <div class="c-item">
+                        <div class="ico"><i class="fab fa-whatsapp"></i></div>
+                        <div><small>WhatsApp</small><a href="https://wa.me/923302741348" target="_blank">+92 330 2741348</a></div>
+                    </div>
+                    <div class="c-item">
+                        <div class="ico"><i class="fab fa-instagram"></i></div>
+                        <div><small>Instagram</small><a href="https://instagram.com/kbrx_.sn09" target="_blank">@kbrx_.sn09</a></div>
+                    </div>
+                    <div class="c-item">
+                        <div class="ico"><i class="fas fa-map-marker-alt"></i></div>
+                        <div><small>Location</small><span>Pakistan</span></div>
+                    </div>
+                    <div class="c-social">
+                        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://instagram.com/kbrx_.sn09" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/923302741348" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form reveal">
+                    <form id="contactForm">
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px">
+                            <div class="f-group">
+                                <input type="text" id="name" placeholder="Your Name" required>
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="f-group">
+                                <input type="email" id="email" placeholder="Your Email" required>
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                        </div>
+                        <div class="f-group">
+                            <input type="text" id="subject" placeholder="Subject" required>
+                            <i class="fas fa-tag"></i>
+                        </div>
+                        <div class="f-group">
+                            <textarea id="message" placeholder="Your Message" required></textarea>
+                            <i class="fas fa-comment"></i>
+                        </div>
+                        <button type="submit" class="btn btn-main">Send Message <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="foot-content">
+                <div>
+                    <div class="foot-brand">Kabeer<span>.</span></div>
+                    <p>Front-End Web Developer</p>
+                </div>
+                <div class="foot-social">
+                    <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://instagram.com/kbrx_.sn09" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/923302741348" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:kabeerkhan1591@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+                <div class="foot-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <p>&copy; <span id="year"></span> Kabeer Khan. All Rights Reserved.</p>
+                <p>Designed & Built with <i class="fas fa-heart"></i> by Kabeer Khan</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="topBtn"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // Typing Effect
+        var typeEl = document.getElementById('typeText');
+        var words = ['HTML Developer', 'CSS Specialist', 'JavaScript Enthusiast', 'Bootstrap Expert'];
+        var wIndex = 0, cIndex = 0, deleting = false;
+
+        function type() {
+            var word = words[wIndex];
+            if (deleting) {
+                typeEl.textContent = word.substring(0, cIndex - 1);
+                cIndex--;
+            } else {
+                typeEl.textContent = word.substring(0, cIndex + 1);
+                cIndex++;
+            }
+            var speed = deleting ? 50 : 100;
+            if (!deleting && cIndex === word.length) {
+                deleting = true; speed = 2000;
+            } else if (deleting && cIndex === 0) {
+                deleting = false; wIndex = (wIndex + 1) % words.length; speed = 500;
+            }
+            setTimeout(type, speed);
+        }
+        if (typeEl) setTimeout(type, 1500);
+
+        // Navbar Scroll
+        var nav = document.getElementById('navbar');
+        window.addEventListener('scroll', function() {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile Menu
+        var menuBtn = document.getElementById('menuBtn');
+        var navLinks = document.getElementById('navLinks');
+        if (menuBtn) {
+            menuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('open');
+                var icon = menuBtn.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+            a.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    var top = target.getBoundingClientRect().top + window.pageYOffset - 70;
+                    window.scrollTo({top: top, behavior: 'smooth'});
+                    navLinks.classList.remove('open');
+                    var icon = menuBtn.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                    document.querySelectorAll('.nav-links a').forEach(function(l) { l.classList.remove('active'); });
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Active Nav on Scroll
+        var secs = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', function() {
+            var pos = window.scrollY + 200;
+            secs.forEach(function(sec) {
+                if (pos >= sec.offsetTop && pos < sec.offsetTop + sec.offsetHeight) {
+                    document.querySelectorAll('.nav-links a').forEach(function(l) {
+                        l.classList.remove('active');
+                        if (l.getAttribute('href') === '#' + sec.id) l.classList.add('active');
+                    });
+                }
+            });
+        });
+
+        // Scroll Reveal
+        var reveals = document.querySelectorAll('.reveal');
+        function checkReveal() {
+            reveals.forEach(function(el) {
+                var rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 80) {
+                    el.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', checkReveal);
+        checkReveal();
+
+        // Skill Bars
+        var fills = document.querySelectorAll('.sk-fill');
+        var skillsDone = false;
+        function animateSkills() {
+            if (skillsDone) return;
+            var sec = document.querySelector('.skills-sec');
+            if (sec && sec.getBoundingClientRect().top < window.innerHeight) {
+                skillsDone = true;
+                fills.forEach(function(bar) {
+                    bar.style.width = bar.getAttribute('data-w') + '%';
+                });
+            }
+        }
+        window.addEventListener('scroll', animateSkills);
+
+        // Back to Top
+        var topBtn = document.getElementById('topBtn');
+        window.addEventListener('scroll', function() {
+            topBtn.classList.toggle('show', window.scrollY > 500);
+        });
+        topBtn.addEventListener('click', function() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+
+        // Contact Form
+        var form = document.getElementById('contactForm');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var name = document.getElementById('name').value;
+                var email = document.getElementById('email').value;
+                var subj = document.getElementById('subject').value;
+                var msg = document.getElementById('message').value;
+                window.location.href = 'mailto:kabeerkhan1591@gmail.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + msg);
+                var btn = form.querySelector('.btn-main');
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+                btn.style.background = '#10B981';
+                setTimeout(function() { btn.innerHTML = orig; btn.style.background = ''; form.reset(); }, 3000);
+            });
+        }
+
+        // Year
+        var yr = document.getElementById('year');
+        if (yr) yr.textContent = new Date().getFullYear();
+
+    })();
+    </script>
+</body>
+</html>
