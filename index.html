@@ -210,7 +210,8 @@
             .menu-btn{display:block}
             .nav-links{position:fixed;top:70px;right:-100%;width:280px;height:calc(100vh - 70px);background:rgba(5,8,22,.98);backdrop-filter:blur(20px);flex-direction:column;padding:30px;gap:20px;transition:right .3s;border-left:1px solid rgba(59,130,246,.2)}
             .nav-links.open{right:0}
-            .about-wrap{flex-direction:column}.about-img{width:280px;height:360px;order:-1;margin-bottom:40px}
+            .about-wrap{flex-direction:column}
+            .about-img{width:280px;height:360px;order:-1;margin-bottom:40px}
             .about-text{padding:0}
             .skills-grid{grid-template-columns:1fr}
             .proj-grid{grid-template-columns:repeat(2,1fr)}
@@ -236,11 +237,13 @@
             .proj-grid{grid-template-columns:1fr}
             .contact-form{padding:25px}
             .foot-links{gap:15px}
+            .proj-img{height:220px}
         }
         @media(max-width:575px){
             .hero h1{font-size:30px}
             .about-img{width:180px;height:230px}
             .sk-cards{grid-template-columns:1fr 1fr}
+            .proj-img{height:180px}
         }
     </style>
 <base target="_blank">
@@ -280,7 +283,7 @@
             </div>
             <h1>Hi, I'm <span>Kabeer Khan</span></h1>
             <div class="hero-sub">
-                I'm a <span class="type" id="typeText"></span><span class="cursor">|</span>
+                I'm a <span class="type" id="typeText"></span><span class="cursor">....</span>
             </div>
             <p>Crafting pixel-perfect, responsive, and performant web experiences with modern technologies.</p>
             <div class="hero-btns">
@@ -312,16 +315,16 @@
                 <div class="about-img reveal">
                    <div class="box"><img src="image/img3.JPG" alt="Kabeer Khan"></div>
                     <div class="border"></div>
-                    <div class="exp-badge"><b>1</b><small>Year Exp.</small></div>
+                    <div class="exp-badge"><b>1+</b><small>Year Exp.</small></div>
                 </div>
                 <div class="about-text reveal">
                     <h3>Passionate Front-End Developer</h3>
                     <p>I am a passionate <strong>Front-End Web Developer</strong> specializing in <strong>HTML, CSS, JavaScript, Responsive Design, Media Queries, and Bootstrap</strong>. I enjoy building modern, fast, and user-friendly websites.</p>
                     <p>I am continuously learning new technologies and seeking opportunities to improve my skills and contribute to innovative projects.</p>
                     <div class="stats">
-                        <div class="stat"><b>15+</b><span>Projects Completed</span></div>
-                        <div class="stat"><b>10+</b><span>Happy Clients</span></div>
-                        <div class="stat"><b>100%</b><span>Satisfaction Rate</span></div>
+                        <div class="stat"><b>10+</b><span>Projects Completed</span></div>
+                        <div class="stat"><b>5+</b><span>Happy Clients</span></div>
+                        <div class="stat"><b>90%</b><span>Satisfaction Rate</span></div>
                     </div>
                     <a href="#contact" class="btn btn-main" style="margin-top:25px">Let's Work Together <i class="fas fa-arrow-right"></i></a>
                 </div>
@@ -383,16 +386,16 @@
             <div class="skills-grid">
                 <div class="skill-box reveal">
                     <h3><i class="fas fa-code"></i> Core Technologies</h3>
-                    <div class="sk-row"><div class="sk-info"><span><i class="fab fa-html5"></i> HTML5</span><b>95%</b></div><div class="sk-bar"><div class="sk-fill" data-w="95"></div></div></div>
+                    <div class="sk-row"><div class="sk-info"><span><i class="fab fa-html5"></i> HTML5</span><b>90%</b></div><div class="sk-bar"><div class="sk-fill" data-w="90"></div></div></div>
                     <div class="sk-row"><div class="sk-info"><span><i class="fab fa-css3-alt"></i> CSS3</span><b>90%</b></div><div class="sk-bar"><div class="sk-fill" data-w="90"></div></div></div>
-                    <div class="sk-row"><div class="sk-info"><span><i class="fab fa-js"></i> JavaScript</span><b>80%</b></div><div class="sk-bar"><div class="sk-fill" data-w="80"></div></div></div>
-                    <div class="sk-row"><div class="sk-info"><span><i class="fab fa-bootstrap"></i> Bootstrap 5</span><b>92%</b></div><div class="sk-bar"><div class="sk-fill" data-w="92"></div></div></div>
+                    <div class="sk-row"><div class="sk-info"><span><i class="fab fa-js"></i> JavaScript</span><b>70%</b></div><div class="sk-bar"><div class="sk-fill" data-w="70"></div></div></div>
+                    <div class="sk-row"><div class="sk-info"><span><i class="fab fa-bootstrap"></i> Bootstrap 5</span><b>70%</b></div><div class="sk-bar"><div class="sk-fill" data-w="70"></div></div></div>
                 </div>
                 <div class="skill-box reveal">
                     <h3><i class="fas fa-tools"></i> Tools & Others</h3>
-                    <div class="sk-row"><div class="sk-info"><span><i class="fas fa-mobile-alt"></i> Responsive Design</span><b>94%</b></div><div class="sk-bar"><div class="sk-fill" data-w="94"></div></div></div>
+                    <div class="sk-row"><div class="sk-info"><span><i class="fas fa-mobile-alt"></i> Responsive Design</span><b>90%</b></div><div class="sk-bar"><div class="sk-fill" data-w="90"></div></div></div>
                     <div class="sk-row"><div class="sk-info"><span><i class="fab fa-git-alt"></i> Git & GitHub</span><b>85%</b></div><div class="sk-bar"><div class="sk-fill" data-w="85"></div></div></div>
-                    <div class="sk-row"><div class="sk-info"><span><i class="fas fa-bolt"></i> Media Queries</span><b>93%</b></div><div class="sk-bar"><div class="sk-fill" data-w="93"></div></div></div>
+                    <div class="sk-row"><div class="sk-info"><span><i class="fas fa-bolt"></i> Media Queries</span><b>90%</b></div><div class="sk-bar"><div class="sk-fill" data-w="90"></div></div></div>
                 </div>
             </div>
             <div class="sk-cards">
@@ -413,10 +416,10 @@
                 <h2 class="sec-title">Featured <span>Project</span></h2>
                 <div class="sec-line"></div>
             </div>
-            <div class="proj-grid" style="grid-template-columns: 1fr; max-width: 1200px; margin: 0 auto;">
-                <div class="proj-card reveal" style="max-width: 1200px; margin-top: 0px auto; width: 100%;">
-                    <div class="proj-img" style="height: 350px;">
-                       <img src="image/img1.png" alt="TerraMax Academy Website" style="width: 100%; height: 100%; object-fit: contain; background:#0F172A;">
+            <div class="proj-grid" style="grid-template-columns: 1fr; max-width:100%; margin: 0 auto;">
+                <div class="proj-card reveal" style="max-width: 100%; margin-top: 0px auto; width: 100%;">
+                    <div class="proj-img">
+                        <img src="image/img1.png" alt="TerraMax Academy Website" style="width: 100%; height: 100%; object-fit: contain; background:#0F172A;">
                         <div class="proj-over">
                             <a href="https://kabeerkhan1591-ctrl.github.io/THE-TERRAMAX-ACADEMY/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
                             <a href="https://github.com/kabeerkhan1591-ctrl/THE-TERRAMAX-ACADEMY" target="_blank"><i class="fab fa-github"></i></a>
@@ -471,8 +474,8 @@
                         <div><small>Location</small><span>Pakistan</span></div>
                     </div>
                     <div class="c-social">
-                        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/kabeerkhan1591-ctrl" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/kabeerkhan-29a211387" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://instagram.com/kbrx_.sn09" target="_blank"><i class="fab fa-instagram"></i></a>
                         <a href="https://wa.me/923302741348" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
@@ -513,8 +516,8 @@
                     <p>Front-End Web Developer</p>
                 </div>
                 <div class="foot-social">
-                    <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/kabeerkhan1591-ctrl" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/kabeerkhan-29a211387" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     <a href="https://instagram.com/kbrx_.sn09" target="_blank"><i class="fab fa-instagram"></i></a>
                     <a href="https://wa.me/923302741348" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     <a href="mailto:kabeerkhan1591@gmail.com"><i class="fas fa-envelope"></i></a>
